@@ -7,6 +7,7 @@ typedef ListMapper<T> = Map<T, List<T>>;
 void main() {
   int startTime = Timeline.now;
 
+  print([1, -1, 1, 1, 1, -1, -1, 1].scan());
   print([6215, 879432, 317, 13, 41, 41, 41, 313, 113, 313, 313].mean());
 
   int endTime = Timeline.now;
@@ -267,10 +268,9 @@ extension DoubleMath on List<double> {
   }
 }
 
-extension IntMath on List {
-  double mean() {
+extension ListExtension on List<num> {
+  num mean() {
     if (length == 0) return 0;
-    if (elementAt(0) is! num) return 0;
 
     if (length == 0) {
       return double.nan;
@@ -283,8 +283,20 @@ extension IntMath on List {
     return sum / length;
   }
 
-  double sum() {
-    double result = 0;
+  List<num> scan() {
+    num current = 0;
+    List<num> result = [];
+
+    for (int i = 0; i < length; i++) {
+      current += elementAt(i);
+      result.add(current);
+    }
+
+    return result;
+  }
+
+  num sum() {
+    num result = 0;
     forEach((element) {
       result += element;
     });
