@@ -7,6 +7,7 @@ typedef ListMapper<T> = Map<T, List<T>>;
 void main() {
   int startTime = Timeline.now;
 
+  print('hello github')
   print([1, -1, 1, 1, 1, -1, -1, 1].scan());
   print([6215, 879432, 317, 13, 41, 41, 41, 313, 113, 313, 313].mean());
 
